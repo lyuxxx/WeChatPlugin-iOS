@@ -52,7 +52,7 @@
 
 #### 2. 生成注入的app文件
 
-* 可直接通过百度云下载，链接: https://pan.baidu.com/s/1pLsP3K3 密码: yv4n
+* 可直接通过百度云下载，链接: https://pan.baidu.com/s/1c120oww 密码: 95bx（微信版本为6.5.16）
 
 * 若想修改源码，生成新的dylib，可在修改之后执行`make`,之后拷贝生成的dylib(~~路径为`./theos/obj/debug/robot.dylib`~~),最后执行 `./Others/autoInsertDylib.sh ipa文件路径 dylib文件路径` 即可获得注入dylib的app文件。
 
@@ -72,6 +72,10 @@
 
 ![Device.png](http://upload-images.jianshu.io/upload_images/965383-abb8cf54a6acabbe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
+#### 5. iOS权限设置
+
+打开`设置-通用-描述文件与设备管理`，信任证列表中的开发者应用。
+
 ---
 
 ### 依赖
@@ -84,3 +88,10 @@
 
 ### 免责声明
 本项目旨在学习 iOS 逆向的一点实践，不可使用于商业和个人其他意图。若使用不当，均由个人承担。
+
+
+---
+
+#### 听说你想请我喝下午茶？😏
+ 
+<img src="http://upload-images.jianshu.io/upload_images/965383-8e2af8fe607eee62.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1024" height="300" hspace="7" style="display: inline-block">

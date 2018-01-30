@@ -26,9 +26,14 @@ typedef NS_ENUM(NSUInteger, TKArrayTpye) {
     TKArrayTpyeMsgUserName
 };
 
+@class MMTableViewInfo;
+
 #pragma mark - MODEL
 
 @interface CMessageWrap : NSObject
+@property(nonatomic, assign) NSInteger m_uiGameType;  // 1、猜拳; 2、骰子; 0、自定义表情
+@property(nonatomic, assign) unsigned long m_uiGameContent;
+@property(nonatomic, strong) NSString *m_nsEmoticonMD5;
 @property(nonatomic) long long m_n64MesSvrID;
 @property (nonatomic, copy) NSString *m_nsContent;                      // 内容
 @property (nonatomic, copy) NSString *m_nsToUsr;                        // 接收的用户(微信id)
@@ -133,6 +138,7 @@ typedef NS_ENUM(NSUInteger, TKArrayTpye) {
 - (void)AddLocalMsg:(id)arg1 MsgWrap:(id)arg2 fixTime:(_Bool)arg3 NewMsgArriveNotify:(_Bool)arg4;
 - (void)AsyncOnSpecialSession:(id)arg1 MsgList:(id)arg2;
 - (id)GetHelloUsers:(id)arg1 Limit:(unsigned int)arg2 OnlyUnread:(BOOL)arg3;
+- (void)AddEmoticonMsg:(NSString *)msg MsgWrap:(CMessageWrap *)msgWrap;
 // new
 - (void)addAutoVerifyWithArray:(NSArray *)ary arrayType:(TKArrayTpye)type;
 - (void)addAutoVerifyWithMessageInfo:(NSDictionary *)info;
@@ -174,6 +180,8 @@ typedef NS_ENUM(NSUInteger, TKArrayTpye) {
 @end
 
 @interface NewSettingViewController: MMUIViewController
+
+@property(nonatomic, strong) MMTableViewInfo *m_tableViewInfo; //
 - (void)reloadTableData;
 @end
 
@@ -258,4 +266,8 @@ typedef NS_ENUM(NSUInteger, TKArrayTpye) {
 
 @interface UINavigationController (LogicController)
 - (void)PushViewController:(id)arg1 animated:(BOOL)arg2;
+@end
+
+@interface GameController : NSObject
++ (NSString*)getMD5ByGameContent:(NSInteger) content;
 @end

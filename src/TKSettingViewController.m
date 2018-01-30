@@ -22,7 +22,13 @@
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        _tableViewInfo = [[objc_getClass("MMTableViewInfo") alloc] initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStyleGrouped];
+        // 增加对iPhone X的屏幕适配
+        CGRect winSize = [UIScreen mainScreen].bounds;
+        if (winSize.size.height == 812) { // iPhone X 高为812
+            winSize.size.height -= 88;
+            winSize.origin.y = 88;
+        }
+        _tableViewInfo = [[objc_getClass("MMTableViewInfo") alloc] initWithFrame:winSize style:UITableViewStyleGrouped];
     }
     return self;
 }
@@ -62,6 +68,7 @@
         [sectionInfo addCell:[self createStepCountCell]];
     }
     [sectionInfo addCell:[self createRevokeSwitchCell]];
+    [sectionInfo addCell:[self createGameCheatSwitchCell]];
 
     [self.tableViewInfo addSection:sectionInfo];
 }
@@ -134,6 +141,13 @@
 - (MMTableViewCellInfo *)createRevokeSwitchCell {
     BOOL preventRevokeEnable = [[TKRobotConfig sharedConfig] preventRevokeEnable];
     MMTableViewCellInfo *cellInfo = [objc_getClass("MMTableViewCellInfo") switchCellForSel:@selector(settingRevokeSwitch:) target:self title:@"拦截撤回消息" on:preventRevokeEnable];
+
+    return cellInfo;
+}
+
+- (MMTableViewCellInfo *)createGameCheatSwitchCell {
+    BOOL preventGameCheatEnable = [[TKRobotConfig sharedConfig] preventGameCheatEnable];
+    MMTableViewCellInfo *cellInfo = [objc_getClass("MMTableViewCellInfo") switchCellForSel:@selector(settingGameCheatSwitch:) target:self title:@"开启游戏作弊" on:preventGameCheatEnable];
 
     return cellInfo;
 }
@@ -269,6 +283,11 @@
     [self reloadTableData];
 }
 
+- (void)settingGameCheatSwitch:(UISwitch *)arg {
+    [[TKRobotConfig sharedConfig] setPreventGameCheatEnable:arg.on];
+    [self reloadTableData];
+}
+
 - (void)settingVerifySwitch:(UISwitch *)arg {
     [[TKRobotConfig sharedConfig] setAutoVerifyEnable:arg.on];
     [self reloadTableData];
@@ -321,7 +340,7 @@
     editViewController.title = @"个人消息自动回复";
     editViewController.text = autoReplyKeyword;
     editViewController.placeholder = @"请输入关键字（ ‘*’ 为任何消息都回复，\n‘||’ 为匹配多个关键字）";
-    [self.navigationController PushViewController:editViewController animated:YES];                                                  
+    [self.navigationController PushViewController:editViewController animated:YES];
 }
 
 - (void)settingAutoReply {
@@ -350,7 +369,7 @@
     editViewController.title = @"群消息自动回复";
     editViewController.text = autoReplyChatRoomKeyword;
     editViewController.placeholder = @"请输入关键字（ ‘*’ 为任何消息都回复，\n‘||’ 为匹配多个关键字）";
-    [self.navigationController PushViewController:editViewController animated:YES];                                                  
+    [self.navigationController PushViewController:editViewController animated:YES];
 }
 
 - (void)settingAutoReplyChatRoom {

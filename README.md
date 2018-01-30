@@ -1,20 +1,20 @@
 ## WeChatPlugin-iOS
 
-微信小助手-iOS版 v1.0.0  
+微信小助手-iOS版 v1.0.0
 
 <img src="./Others/ScreenShots/WeChatPlugin.jpg" width="500">
-
 
 **mac OS 版请戳→_→ [WeChatPlugin-MacOS](https://github.com/TKkk-iOSer/WeChatPlugin-MacOS)**
 
 ---
 
 ### 功能
+- [x] 游戏作弊（石头剪刀布、骰子）
 - [x] 修改微信运动步数
 - [x] 消息防撤回
 - [x] 自动通过好友请求
 - [x] 请求自动通过后发送欢迎语
-- [x] 消息自动回复
+- [x] 消息自动回复(完全匹配触发)
 - [x] 统一设置群公告
 - [x] 敏感词自动踢人
 - [x] 入群欢迎语
@@ -28,14 +28,14 @@
 
 设置界面：
 
-<img src="./Others/ScreenShots/Setting-01.jpg" height="500" hspace="20" style="display: inline-block"> <img src="./Others/ScreenShots/Setting-02.jpg" height="500" hspace="20" style="display: inline-block">
+<img src="./Others/ScreenShots/Setting-03.png" height="500" hspace="20" style="display: inline-block"> <img src="./Others/ScreenShots/Setting-02.jpg" height="500" hspace="20" style="display: inline-block">
 
 
 ---
 
 ### 安装
 
-~~详细安装方法可参考[iOS 逆向 - 微信 helloWorld](http://www.jianshu.com/p/04495a429324)~~
+~~详细安装方法可参考[iOS 逆向 - 微信 helloWorld](http://www.tkkk.fun/2017/03/19/%E9%80%86%E5%90%91-%E5%BE%AE%E4%BF%A1helloWorld/)~~
 
 #### 0. 准备
 
@@ -52,9 +52,11 @@
 
 #### 2. 生成注入的app文件
 
-* 可直接通过百度云下载   
-链接: https://pan.baidu.com/s/1c120oww 密码: 95bx（微信版本为6.5.16）   
-链接: https://pan.baidu.com/s/1bL1oei 密码: grbi (微信版本 6.5.17)   
+* 可直接通过百度云下载
+
+链接: https://pan.baidu.com/s/1o7UBqL8 密码: f71u (微信版本 6.6.0 新版自动回复失效)
+
+链接: https://pan.baidu.com/s/1c120oww 密码: 95bx（微信版本为6.5.16 无作弊功能）
 
 * 若想修改源码，生成新的dylib，可在修改之后执行`make`,之后拷贝生成的dylib(~~路径为`./theos/obj/debug/robot.dylib`~~),最后执行 `./Others/autoInsertDylib.sh ipa文件路径 dylib文件路径` 即可获得注入dylib的app文件。
 
@@ -84,7 +86,7 @@
 * [insert_dylib](https://github.com/gengjf/insert_dylib)(~~已在./Others/~~)
 * [ios-app-signer](https://github.com/DanTheMan827/ios-app-signer) (~~文件太大，请自行下载编译~~)
 * [theos](https://github.com/theos/theos)
-
+* [zhPopupController](https://github.com/snail-z/zhPopupController) 
 
 ---
 
@@ -95,5 +97,6 @@
 ---
 
 #### 听说你想请我喝下午茶？😏
- 
-<img src="http://upload-images.jianshu.io/upload_images/965383-8e2af8fe607eee62.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1024" height="300" hspace="7" style="display: inline-block">
+
+<img src="http://upload-images.jianshu.io/upload_images/965383-cbc86dc1d75a6242.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" height="250" hspace="50"/>&nbsp;&nbsp;&nbsp;<img src="http://upload-images.jianshu.io/upload_images/965383-76a1c7c91b987e1a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" height="250" hspace="50"  />
+
